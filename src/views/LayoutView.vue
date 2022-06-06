@@ -2,18 +2,22 @@
   <a-layout>
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
       <div class="logo" />
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" @click="handleClick">
+      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
           <user-outlined />
-          <router-link to="/home">nav 1</router-link>
+          <router-link to="/home"> 主页</router-link>
         </a-menu-item>
         <a-menu-item key="2">
           <video-camera-outlined />
-          <router-link to="/about">nav 2</router-link>
+          <router-link to="/about"> 关于</router-link>
         </a-menu-item>
         <a-menu-item key="3">
           <upload-outlined />
-          <router-link to="/chart">nav 3</router-link>
+          <router-link to="/chart"> 表单测试</router-link>
+        </a-menu-item>
+        <a-menu-item key="4">
+          <upload-outlined />
+          <router-link to="/upload"> 上传文件测试</router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
