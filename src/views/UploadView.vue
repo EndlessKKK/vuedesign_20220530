@@ -88,12 +88,7 @@ function query():void{
 
 const columns = [
   {
-    title: 'NodeID',
-    dataIndex: 'NodeID',
-  },
-  {
     title: 'fValueData',
-    className: 'column-money',
     dataIndex: 'fValueData',
   },
   {
