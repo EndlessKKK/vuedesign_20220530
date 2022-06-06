@@ -44,16 +44,16 @@ function changeData():void {
 
 const columns = [
   {
-    title: 'Name',
+    title: 'NodeID',
     dataIndex: 'NodeID',
   },
   {
-    title: 'Cash Assets',
+    title: 'fValueData',
     className: 'column-money',
     dataIndex: 'fValueData',
   },
   {
-    title: 'Address',
+    title: 'DataTime',
     dataIndex: 'DataTime',
   },
 ];
