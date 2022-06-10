@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import LayoutView from '../views/LayoutView.vue'
 import ChartView from '../views/ChartView.vue'
 import UploadView from '../views/UploadView.vue'
+import ChessView from '../views/ChessView.vue'
+import EvaluateView from '../views/EvaluateView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -41,6 +43,22 @@ const routes: Array<RouteRecordRaw> = [
               // this generates a separate chunk (about.[hash].js) for this route
               // which is lazy-loaded when the route is visited.
               component:UploadView
+          },
+          {
+              path: '/chess',
+              name: 'chess',
+              // route level code-splitting
+              // this generates a separate chunk (about.[hash].js) for this route
+              // which is lazy-loaded when the route is visited.
+              component:ChessView
+          },
+          {
+              path: '/evaluate',
+              name: 'evaluate',
+              // route level code-splitting
+              // this generates a separate chunk (about.[hash].js) for this route
+              // which is lazy-loaded when the route is visited.
+              component:EvaluateView
           },
       ]
   },

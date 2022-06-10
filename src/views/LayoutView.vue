@@ -12,12 +12,20 @@
           <router-link to="/about"> 关于</router-link>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
-          <router-link to="/chart"> 表单测试</router-link>
+          <video-camera-outlined />
+          <router-link to="/chess"> 棋盘+接口测试</router-link>
         </a-menu-item>
         <a-menu-item key="4">
           <upload-outlined />
+          <router-link to="/chart"> 表单测试</router-link>
+        </a-menu-item>
+        <a-menu-item key="5">
+          <upload-outlined />
           <router-link to="/upload"> 上传文件测试</router-link>
+        </a-menu-item>
+        <a-menu-item key="6">
+          <upload-outlined />
+          <router-link to="/evaluate"> 相关性分析</router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
