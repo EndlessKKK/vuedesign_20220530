@@ -27,6 +27,10 @@
           <upload-outlined />
           <router-link to="/evaluate"> 相关性分析</router-link>
         </a-menu-item>
+        <a-menu-item key="7">
+          <upload-outlined />
+          <router-link to="/predict"> 数据预测</router-link>
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>

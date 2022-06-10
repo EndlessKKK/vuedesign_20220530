@@ -5,6 +5,7 @@ import ChartView from '../views/ChartView.vue'
 import UploadView from '../views/UploadView.vue'
 import ChessView from '../views/ChessView.vue'
 import EvaluateView from '../views/EvaluateView.vue'
+import PredictView from '../views/PredictView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -59,6 +60,11 @@ const routes: Array<RouteRecordRaw> = [
               // this generates a separate chunk (about.[hash].js) for this route
               // which is lazy-loaded when the route is visited.
               component:EvaluateView
+          },
+          {
+              path: '/predict',
+              name: 'predict',
+              component:PredictView
           },
       ]
   },

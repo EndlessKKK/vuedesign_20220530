@@ -16,11 +16,6 @@
     <a-range-picker v-model:value="datetimeRange" show-time @change="datetimeChange"/>
   </a-space>
   <a-table :columns="columns" :data-source="data" bordered>
-    <template #bodyCell="{ column, text }">
-      <template v-if="column.dataIndex === 'NodeID'">
-        <a>{{ text }}</a>
-      </template>
-    </template>
     <template #title>筛选数据</template>
   </a-table>
   <a-space direction="vertical" :size="12">
@@ -118,6 +113,7 @@ function query():void{
 }
 
 function QueryAndDraw():void{
+  let max_data = 0
   console.log(dateTime.value)
   axios
       .post(url_prefix+"/queryanddraw",{
@@ -128,28 +124,27 @@ function QueryAndDraw():void{
         if (response.data) {
           console.log(response.data)
           querydata=response.data
-          const dates:Date[] = []
-          const fdata:number[] = []
-          const indicates=[]
           var jsondata=JSON.parse(JSON.stringify(querydata));
-          console.log("321")
-          console.log(jsondata)
+          column1.value.radar.indicator = []
+          column1.value.series[0].data[0].value = [];
+          column3.value.xAxis.data = [];
+          column3.value.series[0].data = [];
+          column2.value.xAxis.data = [];
+          column2.value.series[0].data = [];
           for(let item of jsondata){
-            dates.push(item.DataTime)
-            fdata.push(item.fValueData)
-            indicates.push({
-              name:item.DataTime,
-              max:0.05
-            })
+            if(item.fValueData>max_data)
+            {
+              max_data = item.fValueData
+            }
           }
-          console.log(dates)
-          console.log(fdata)
-          column1.value.radar.indicator = indicates
-          column1.value.series[0].data = fdata;
-          column3.value.xAxis.data = dates;
-          column3.value.series[0].data = fdata
-          column2.value.xAxis.data = dates;
-          column2.value.series[0].data = fdata;
+          for(let item of jsondata){
+            column1.value.radar.indicator.push({name: item.DataTime, max:max_data})
+            column1.value.series[0].data[0].value.push(item.fValueData)
+            column2.value.series[0].data.push(item.fValueData)
+            column3.value.series[0].data.push(item.fValueData)
+            column2.value.xAxis.data.push(item.DataTime)
+            column3.value.xAxis.data.push(item.DataTime)
+          }
         }})
       .catch(err=>{console.log('Error')})
 }
@@ -171,19 +166,7 @@ const column1 = ref({
   },
   radar: {
     // shape: 'circle',
-    indicator: [
-      { name: '0', max: 0.05 },
-      { name: '1', max: 0.05 },
-      { name: '2', max: 0.05 },
-      { name: '3', max: 0.05 },
-      { name: '4', max: 0.05 },
-      { name: '5', max: 0.05 },
-      { name: '6', max: 0.05 },
-      { name: '7', max: 0.05 },
-      { name: '8', max: 0.05 },
-      { name: '9', max: 0.05 },
-      { name: '10', max: 0.05 },
-      { name: '11', max: 0.05 }
+    indicator: [{ name: '0', max: 1 },
     ]
   },
   series: [
@@ -192,7 +175,7 @@ const column1 = ref({
       type: 'radar',
       data: [
         {
-          value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          value: [],
           name: 'fValueData'
         }
       ]
@@ -204,14 +187,14 @@ const column2 = ref({
   title: { text: "柱状图" },
   tooltip: {},
   xAxis: {
-    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+    data: [],
   },
   yAxis: {},
   series: [
     {
-      name: "销量",
+      name: "fValuedata",
       type: "bar",
-      data: [5, 20, 36, 10, 10, 20],
+      data: [],
     }
   ]
 });
@@ -221,14 +204,14 @@ const column3 = ref({
   tooltip: {},
   xAxis: {
     type: 'category',
-    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+    data: [],
   },
   yAxis: {},
   series: [
     {
-      name: "销量",
+      name: "fValuedata",
       type: 'line',
-      data: [5, 20, 36, 10, 10, 20],
+      data: [],
     }
   ]
 });
