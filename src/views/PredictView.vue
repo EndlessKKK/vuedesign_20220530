@@ -107,6 +107,9 @@ const columns = [
 const column_predict = ref({
   title: { text: "数据预测结果" },
   tooltip: {},
+  legend: {
+    data: ['Predict', 'Practical']
+  },
   xAxis: {
     type: 'category',
     data: [],
