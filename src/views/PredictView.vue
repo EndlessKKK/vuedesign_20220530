@@ -56,9 +56,8 @@ const EndDateTime = computed<string>(()=>
     dateRange.value[1].format("YYYY-MM-DD")
 )
 const NodeID_predict = ref<string>('0')
+// POST
 const DataPredict = () =>{
-  console.log(NodeID)
-  console.log(predictTime.value)
   axios
       .post(url_prefix+"/predict",{
         NodeID: NodeID.value,
@@ -85,7 +84,7 @@ const DataPredict = () =>{
         }})
       .catch(err=>{console.log('Error')})
 }
-
+// 表格设置
 const columns = [
   {
     title: 'DataTime',
@@ -104,6 +103,7 @@ const columns = [
     dataIndex: 'Diff'
   }
 ];
+// 数据预测结果数据
 const column_predict = ref({
   title: { text: "数据预测结果" },
   tooltip: {},
@@ -128,6 +128,7 @@ const column_predict = ref({
     }
   ]
 });
+// 选项设置
 const options_Node = ref<SelectProps['options']>([
   {
     value: '1163938587',

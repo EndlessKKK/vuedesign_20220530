@@ -66,12 +66,10 @@ const DataEvaluate = () =>{
       })
       .then(response=>{
         if (response.data) {
-          console.log(response.data)
           evaluate_result.value = response.data['Relation']
           imgurl = response.data['ImageSRC']
           Uvalue = response.data['Uvalue']
           Vvalue = response.data['Vvalue']
-          console.log(Uvalue,Vvalue)
           UVvalue.value.series[0].data = Uvalue;
           UVvalue.value.series[1].data = Vvalue;
           imgsrc.value = imgurl + Math.random()
@@ -79,29 +77,29 @@ const DataEvaluate = () =>{
       .catch(err=>{console.log('Error')})
 }
 
-  const UVvalue= ref({
-    title: { text: "均值与方差" },
-    legend: {
-      data: ['均值', '方差']
+const UVvalue= ref({
+  title: { text: "均值与方差" },
+  legend: {
+    data: ['均值', '方差']
+  },
+  tooltip: {},
+  xAxis: {
+    data: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+  },
+  yAxis: {},
+  series: [
+    {
+      name: "均值",
+      type: "bar",
+      data: [],
     },
-    tooltip: {},
-    xAxis: {
-      data: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
-    },
-    yAxis: {},
-    series: [
-      {
-        name: "均值",
-        type: "bar",
-        data: [],
-      },
-      {
-        name: "方差",
-        type: "bar",
-        data: [],
-      }
-    ]
-  });
+    {
+      name: "方差",
+      type: "bar",
+      data: [],
+    }
+  ]
+});
 
 const columns_evaluate = [
   {
